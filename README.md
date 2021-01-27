@@ -21,34 +21,6 @@ brew install tfenv
 tfenv install 0.12.20
 ```
 
-## Install Go
-
-```bash
-brew install go
-```
-Create a new folder `/go` alongside the rest of your Vy repos.
-Add the following to your `.bashrc`
-
-```bash
-export GOPATH=<path-to-where-you-keep-all-your-vy-repos>/go
-export GOBIN=$GOPATH/bin
-PATH=$GOBIN:$PATH
-export PATH
-```
-
-
-## Set up developer environment
-
-```bash
-source ~/.bashrc
-mkdir -p $GOPATH/{bin,pkg,src/github.com/nsbno,vendor}
-go get github.com/nsbno/cloud-tools # Ignore the warning message
-cd $GOPATH/src/github.com/nsbno/cloud-tools
-./deps.sh
-./make.sh
-```
-
-
 ## Install additional tools
 
 ```
@@ -64,12 +36,9 @@ pip install ansible --user
 Run the following commands in a terraform base directory to check if it works.
 
 ```
-envchain aws terraform-wrapper init
-envchain aws terraform-wrapper plan
+envchain aws terraform init
+envchain aws terraform plan
 ```
-
-# Configuration
-Configure using a file named `cloud-config.yml`. See this file from `booking` for an example: https://github.com/nsbno/booking/blob/master/terraform/test1/cloud-config.yml
 
 ## Pagerduty API token 
 Some of the Terraform-modules require access to the Pagerduty REST API. To copy the access token into your `envchain` namespace, run this command:
